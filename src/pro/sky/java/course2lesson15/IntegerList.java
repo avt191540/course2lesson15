@@ -76,5 +76,8 @@ public interface IntegerList {
     // из строк в списке
     // и вернуть его.
     int[] toArray();
+
+    //Переработанный метод contains
+    boolean containsBinary (int item);
 }
 

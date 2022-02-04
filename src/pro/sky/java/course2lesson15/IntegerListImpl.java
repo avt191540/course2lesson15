@@ -167,4 +167,43 @@ public class IntegerListImpl implements IntegerList{
         System.arraycopy(list, 0, timeArray, 0, size);
         return timeArray;
     }
+
+    //Переработанный метод contains
+    @Override
+    public boolean containsBinary(int item) {
+        return binarySearch(list, item);
+    }
+
+    //Метод бинарного поиска с использованием быстрой сортировки
+    private boolean binarySearch(int[] arr, int element) {
+        sortInsertion1(arr);
+        int min = 0;
+        int max = arr.length - 1;
+        while (min <= max) {
+            int mid = (min + max) / 2;
+            if (element == arr[mid]) {
+                return true;
+            }
+            if (element < arr[mid]) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+        return false;
+    }
+
+    //Самая быстрая сортировка из трех рассматриваемых
+    private void sortInsertion1(int[] arr) {
+        for (int i = 1; i < arr.length; i++)   {
+            int temp = arr[i];
+            int j = i;
+            while (j > 0 && arr[j - 1] >= temp)   {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = temp;
+        }
+    }
+
 }
